@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - Ankii's Special Site</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ffecf1 0%, #fef9fb 100%);
+      min-height: 100vh;
+      margin: 0;
+    }
+    .lovely-box {
+      background: #ffe4e6;
+      box-shadow: 0 8px 20px rgb(255 182 193 / 0.3);
+    }
+    .btn-fancy {
+      background: #ec4899;
+      color: white;
+      font-weight: 600;
+      padding: 0.5rem 1.25rem;
+      border-radius: 9999px;
+      box-shadow: 0 4px 14px rgb(236 72 153 / 0.45);
+      transition: all 0.25s ease;
+      user-select: none;
+    }
+    .btn-fancy:hover {
+      background: #db2777;
+      box-shadow: 0 6px 18px rgb(219 39 119 / 0.65);
+    }
+    @keyframes fall {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(110vh); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="responseBanner" class="hidden bg-green-100 text-green-800 px-4 py-2 text-center font-medium w-full mb-4 rounded-xl fixed top-0 left-0 z-50"></div>
+
+<main class="max-w-4xl mx-auto px-4 py-12">
+
+  <header class="text-center mb-12">
+    <h1 class="text-4xl font-extrabold text-pink-600 mb-2">About Us</h1>
+    <p class="text-pink-400">Welcome to your special space, Ankii!</p>
+  </header>
+
+  <!-- Envelope Section -->
+  <section id="envelopeSection" class="relative mx-auto max-w-md cursor-pointer select-none" title="Click to open envelope">
+    <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Envelope" class="mx-auto w-48" id="envelopeImg" />
+    <img src="https://cdn-icons-png.flaticon.com/512/6676/6676238.png" alt="Teddy" class="mx-auto w-28 absolute left-1/2 transform -translate-x-1/2 -bottom-10 z-10 animate-bounce" />
+    <p class="text-center text-pink-500 mt-2 italic">Click the envelope to see your message</p>
+  </section>
+
+  <!-- Sorry Modal -->
+  <div id="sorryModal" class="fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-3xl max-w-xs text-center shadow-lg animate-fadeIn">
+      <h3 class="text-xl font-bold text-pink-600 mb-4">Did you accept my sorry? 🙈</h3>
+      <div class="flex justify-center gap-6">
+        <button class="btn-fancy" onclick="handleSorryResponse(true)">Yes 😊</button>
+        <button class="btn-fancy bg-gray-400 hover:bg-gray-500" onclick="handleSorryResponse(false)">Nope 😒</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shimla Dream Project Section -->
+  <section class="max-w-xl mx-auto my-16 bg-pink-50 p-6 rounded-2xl shadow-xl text-center">
+    <h2 class="text-3xl font-bold text-pink-700 mb-3">🌨️ The Shimla Dream Project 🌨️</h2>
+    <p class="text-pink-600 text-base mb-4">Because what’s better than mountains, momos, and Ankii wrapped in 3 layers of sweaters?</p>
+    <button onclick="launchShimlaQuestion()" class="btn-fancy">Wanna Hear the Plan? 😄</button>
+  </section>
+
+  <!-- Favorites Section -->
+  <section class="lovely-box p-4 rounded-xl my-10">
+    <h2 class="text-2xl font-bold text-pink-600 mb-4 text-center">Favorites ✨</h2>
+    <div class="mb-4">
+      <h3 class="text-lg font-semibold text-pink-500">Our Favourites</h3>
+      <textarea id="weLikesInput" rows="3" placeholder="e.g. pani puri, walks..." class="w-full p-3 rounded-xl border border-pink-300 resize-none"></textarea>
+      <button onclick="saveLikeSet('weLikesInput', 'weLikesList', 'weLikes')" class="btn-fancy mt-2">Save</button>
+      <ul id="weLikesList" class="mt-2 text-left text-pink-700 list-disc pl-4"></ul>
+    </div>
+    <div class="mb-4">
+      <h3 class="text-lg font-semibold text-pink-500">Ankii’s Favourites</h3>
+      <textarea id="ankiiLikesInput" rows="3" placeholder="e.g. teddy bears, coffee..." class="w-full p-3 rounded-xl border border-pink-300 resize-none"></textarea>
+      <button onclick="saveLikeSet('ankiiLikesInput', 'ankiiLikesList', 'ankiiLikes')" class="btn-fancy mt-2">Save</button>
+      <ul id="ankiiLikesList" class="mt-2 text-left text-pink-700 list-disc pl-4"></ul>
+    </div>
+    <div>
+      <h3 class="text-lg font-semibold text-pink-500">Ashu’s Favourites</h3>
+      <textarea id="ashuLikesInput" rows="3" placeholder="e.g. code, chai..." class="w-full p-3 rounded-xl border border-pink-300 resize-none"></textarea>
+      <button onclick="saveLikeSet('ashuLikesInput', 'ashuLikesList', 'ashuLikes')" class="btn-fancy mt-2">Save</button>
+      <ul id="ashuLikesList" class="mt-2 text-left text-pink-700 list-disc pl-4"></ul>
+    </div>
+  </section>
+
+  <!-- Video Call -->
+  <section class="text-center my-10">
+    <h2 class="text-2xl font-bold text-pink-600 mb-4">Wanna Talk? 📞</h2>
+    <a href="https://wa.me/919508812525" target="_blank" class="btn-fancy">Start a WhatsApp Video Call 💬</a>
+    <p class="text-sm text-gray-500 mt-2">*Link opens in WhatsApp — make sure Ankii is online 😉</p>
+  </section>
+
+  <!-- Cute Chat -->
+  <section class="text-center my-8">
+    <a href="chat.html" class="btn-fancy">Open Cute Chat 💌</a>
+  </section>
+
+  <!-- Birthday Countdown -->
+  <section class="text-center mt-12 mb-20 text-pink-600 font-semibold text-lg" id="bdayCounter" aria-live="polite"></section>
+</main>
+
+<script>
+  if (localStorage.getItem('auth') !== 'true') {
+    const username = prompt('Enter username:');
+    const password = prompt('Enter password:');
+    if (username !== 'funny' || password !== 'ankii') {
+      document.body.innerHTML = '<h1>🚫 Access Denied</h1>';
+      throw new Error('Unauthorized');
+    }
+    localStorage.setItem('auth', 'true');
+    alert(`Welcome, ${username}!`);
+  }
+
+  // Envelope Modal
+  document.getElementById('envelopeSection').addEventListener('click', () => {
+    document.getElementById('sorryModal').classList.remove('hidden');
+  });
+
+  function handleSorryResponse(accepted) {
+    localStorage.setItem('sorryResponse', accepted ? 'accepted' : 'not accepted');
+    document.getElementById('sorryModal').classList.add('hidden');
+    if (accepted) setTimeout(() => launchShimlaQuestion(), 500);
+  }
+
+  function launchShimlaQuestion() {
+    const modal = document.createElement('div');
+    modal.className = 'fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50';
+    modal.innerHTML = `
+      <div class="bg-white p-6 rounded-3xl max-w-sm text-center shadow-lg animate-fadeIn">
+        <h3 class="text-xl font-bold text-pink-600 mb-4">Would you ever go to Shimla with me? 😁</h3>
+        <p class="mb-4 text-gray-600">Snow, hot chocolate, and us together? 🧥☕❄️</p>
+        <div class="flex justify-center gap-6">
+          <button class="btn-fancy" onclick="handleShimlaResponse(true, this)">Yes 😉</button>
+          <button class="btn-fancy bg-gray-400 hover:bg-gray-500" onclick="handleShimlaResponse(false, this)">No 😤</button>
+        </div>
+      </div>`;
+    document.body.appendChild(modal);
+  }
+
+  function handleShimlaResponse(yes, btn) {
+    const modal = btn.closest('div.fixed');
+    modal.innerHTML = yes ? `
+      <div class="bg-white p-6 rounded-3xl max-w-sm text-center shadow-lg">
+        <h3 class="text-xl font-bold text-pink-600 mb-4">Yay! ❄️</h3>
+        <p>Snowy memories incoming!</p>
+        <button class="btn-fancy mt-4" onclick="this.closest('.fixed').remove()">Close</button>
+      </div>` : `
+      <div class="bg-white p-6 rounded-3xl max-w-sm text-center shadow-lg">
+        <h3 class="text-xl font-bold text-pink-600 mb-4">Noooo 😭</h3>
+        <p>Even Shimla cried...</p>
+        <button class="btn-fancy mt-4" onclick="this.closest('.fixed').remove()">Okay 🥲</button>
+      </div>`;
+    triggerSnowfall();
+  }
+
+  function triggerSnowfall() {
+    const snow = document.createElement('div');
+    snow.style.position = 'fixed';
+    snow.style.top = 0;
+    snow.style.left = 0;
+    snow.style.width = '100vw';
+    snow.style.height = '100vh';
+    snow.style.pointerEvents = 'none';
+    snow.style.zIndex = 9999;
+    for (let i = 0; i < 40; i++) {
+      const flake = document.createElement('div');
+      flake.textContent = '❄️';
+      flake.style.position = 'absolute';
+      flake.style.left = Math.random() * 100 + 'vw';
+      flake.style.top = '-' + (Math.random() * 20) + 'vh';
+      flake.style.fontSize = (10 + Math.random() * 20) + 'px';
+      flake.style.opacity = Math.random();
+      flake.style.animation = `fall 6s linear infinite`;
+      snow.appendChild(flake);
+    }
+    document.body.appendChild(snow);
+    setTimeout(() => snow.remove(), 7000);
+  }
+
+  function saveLikeSet(inputId, listId, key) {
+    const val = document.getElementById(inputId).value.trim();
+    if (!val) return;
+    const items = val.split(',').map(i => i.trim()).filter(Boolean);
+    localStorage.setItem(key, JSON.stringify(items));
+    renderList(listId, items);
+  }
+
+  function renderList(id, items) {
+    const ul = document.getElementById(id);
+    ul.innerHTML = '';
+    items.forEach((item, i) => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      li.className = 'cursor-text';
+      ul.appendChild(li);
+    });
+  }
+
+  window.addEventListener('load', () => {
+    ['weLikes', 'ashuLikes', 'ankiiLikes'].forEach(key => {
+      const items = JSON.parse(localStorage.getItem(key) || '[]');
+      document.getElementById(key + 'Input').value = items.join(', ');
+      renderList(key + 'List', items);
+    });
+
+    const now = new Date();
+    let bday = new Date(now.getFullYear(), 1, 4);
+    if (now > bday) bday.setFullYear(now.getFullYear() + 1);
+    const diff = Math.ceil((bday - now) / (1000 * 60 * 60 * 24));
+    document.getElementById('bdayCounter').textContent = `🎂 ${diff} days until Ankii's Birthday!`;
+  });
+</script>
+
+</body>
+</html>
+
