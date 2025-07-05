@@ -57,6 +57,18 @@
   }
 }
 
+@keyframes twinkle {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.rising-heart {
+  animation: rise 6s ease-out forwards, twinkle 1.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(255, 105, 180, 0.6));
+  pointer-events: none;
+  position: fixed;
+  z-index: 9999;
+}
 
 
 
@@ -210,18 +222,20 @@
     teddy.style.opacity = '1';
     sound.currentTime = 0;
     sound.play();
+const envelope = document.getElementById('envelopeSection');
+const envelopeRect = envelope.getBoundingClientRect();
 
-    for (let i = 0; i < 10; i++) {
-      const heart = document.createElement('div');
-      heart.textContent = '💖';
-      heart.style.position = 'absolute';
-      heart.style.left = `${Math.random() * 100}%`;
-      heart.style.bottom = '20px';
-      heart.style.fontSize = `${Math.random() * 20 + 20}px`;
-      heart.style.animation = `rise ${2 + Math.random()}s ease-out forwards`;
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 3000);
-    }
+for (let i = 0; i < 18; i++) {
+  const effect = document.createElement('div');
+  effect.textContent = Math.random() > 0.5 ? '💖' : '✨';
+  effect.className = 'rising-heart';
+  effect.style.left = `${envelopeRect.left + Math.random() * envelopeRect.width}px`;
+  effect.style.top = `${envelopeRect.top + Math.random() * envelopeRect.height}px`;
+  effect.style.fontSize = `${Math.random() * 16 + 20}px`;
+  document.body.appendChild(effect);
+  setTimeout(() => effect.remove(), 6000);
+}
+
 
     setTimeout(() => {
       document.getElementById('sorryModal').classList.remove('hidden');
